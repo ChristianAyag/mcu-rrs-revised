@@ -22,13 +22,10 @@ use Laravel\Tinker\ClassAliasAutoloader;
 //use App\Http\Controllers\Form3CController;
 //use App\Http\Controllers\Form3LController;
 
-//palitan mo nalang yung route name based sa form na tetest mo
-Route::get('/export-form2a', [PdfExportController::class, 'exportForm2A'])->name('export.form2a');
-
-// data entry
+//data entry
 Route::get('/', function () {
     return view('auth.login');
-})->name('auth.logout');
+});
 
 Route::get('/send-otp', function () {
     return view('auth.send-otp');
@@ -209,8 +206,8 @@ Route::get('/reviewer/forms/form3e',function () {
 });
 
 //Storing Data through superadmin's permission-control
-Route::get('/superadmin/permission-control', [AdminController::class, 'index'])->name('permission-control');
-Route::post('/superadmin/store', [AdminController::class, 'store'])->name('superadmin.store');
+Route::get('/superadmin/permission-control', [RegisteredUserController::class, 'index'])->name('permission-control');
+Route::post('/superadmin/store', [RegisteredUserController::class, 'addUser'])->name('superadmin.store');
 
 //account classification
 Route::get('/superadmin/accounts-classifications',[ClassificationController::class,'index'])->name('accounts-classifications');
@@ -244,6 +241,12 @@ Route::get('/student/dashboard', function () {
 //Storing Data for Form2A
 Route::get('/student/download-forms', [Form2AController::class, 'index'])->name('download-forms');
 Route::post('/student/store', [Form2AController::class, 'store'])->name('form2a.store');
+
+//pdf exporter
+Route::get('/export-form2a', [PdfExportController::class, 'exportForm2A'])->name('export.form2a');
+Route::get('/export-form2b', [PdfExportController::class, 'exportForm2B'])->name('export.form2b');
+Route::get('/export-form2c', [PdfExportController::class, 'exportForm2C'])->name('export.form2c');
+
 //Storing Data for Form2B
 //Route::get('/student/download-forms', [Form2BController::class, 'index'])->name('download-forms');
 //Route::post('/student/store', [Form2BController::class, 'store'])->name('form2b.store');

@@ -28,7 +28,22 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        $user = Auth::user();
+
+        switch ($user->user_Access) {
+            case 'Superadmin':
+                return redirect()->route('superadmin.dashboard');
+            case 'ERB Admin':
+                return redirect()->route('erbadmin.dashboard');
+            case 'IACUC Admin':
+                return redirect()->route('iacucadmin.dashboard');
+            case 'Reviewer':
+                return redirect()->route('reviewer.dashboard');
+            case 'Principal Investigator':
+                return redirect()->route('student.dashboard');
+            default:
+                return redirect()->route('login'); // fallback
+        }
     }
 
     /**

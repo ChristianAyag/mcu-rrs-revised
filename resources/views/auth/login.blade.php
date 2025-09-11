@@ -8,19 +8,19 @@
 
         <!-- Email Address -->
         <div>
-            <x-input-label for="loginID" :value="__('Username')" />
-            <x-text-input id="loginID" class="block mt-1 w-full text-[14px] max-sm:text-[13px] h-[35px]" type="text" name="loginID" :value="old('loginID')"
+            <x-input-label for="user_ID" :value="__('Username')" />
+            <x-text-input id="user_ID" class="block mt-1 w-full text-[14px] max-sm:text-[13px] h-[35px]" type="text" name="user_ID" :value="old('user_ID')"
                 required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('loginID')" class="mt-2" />
+            <x-input-error :messages="$errors->get('user_ID')" class="mt-2" />
         </div>
 
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="loginPW" :value="__('Password')" />
-            <x-text-input id="loginPW" class="block mt-1 w-full text-[14px] max-sm:text-[13px] h-[35px]" type="password" name="loginPW" required
+            <x-input-label for="user_Password" :value="__('Password')" />
+            <x-text-input id="user_Password" class="block mt-1 w-full text-[14px] max-sm:text-[13px] h-[35px]" type="password" name="user_Password" required
                 autocomplete="current-password" />
 
-            <x-input-error :messages="$errors->get('loginPW')" class="mt-2" />
+            <x-input-error :messages="$errors->get('user_Password')" class="mt-2" />
         </div>
 
         <!-- Remember Me -->
