@@ -62,14 +62,14 @@
             <tbody class="text-[17px]/6 max-lg:text-[15px]">
                 @foreach ($pi as $user)
                 <tr>
-                    <td>{{ $user -> pi_fname }} {{ $user->pi_MI ? $user->pi_MI : '' }} {{ $user->pi_Lname }}</td>
+                    <td>{{ $user -> user_Fname }} {{ $user->user_MI ? $user->user_MI : '' }} {{ $user->user_Lname }}</td>
                     <td>{{ $user -> pi_title }}</td>
                     <td>
                         <button type="button"
                             class="openModalBtn border-2 px-[10px] py-[5px] hover:bg-gray"
-                            data-id="{{ $user->pi_ID }}" 
-                            data-pi-name="{{ $user->pi_fname }}"
-                            data-pi-title="{{ $user->pi_title }}"
+                            data-id="{{ $user->user_ID }}" 
+                            data-pi-name="{{ $user->user_fname }}"
+                            data-pi-title="{{ $user->user_title }}"
                             data-co-investigators="{{ $user->co_investigators ?? 'N/A' }}"
                             data-endorsement="{{ $user->pi_LetterOfIntent ? asset($user->id.'/'.$user->pi_LetterOfIntent) : '#' }}"
                             data-classification="{{ $user->classification ?? '' }}">View</button>

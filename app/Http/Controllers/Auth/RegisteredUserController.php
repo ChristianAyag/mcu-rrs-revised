@@ -49,7 +49,7 @@ class RegisteredUserController extends Controller
             'min:8',
             'confirmed',
             ],
-        'user_Email' => 'required|email|unique:tbl_pi_info,pi_Email',
+        'user_Email' => 'required|email|unique:tbl_users,user_Email',
         //'Co_Investigators' => ['string', 'max:255'],
         //'pi_title' => ['string', 'max:255','required'],
         //'pi_program' => ['required','string','max:255'],
@@ -59,16 +59,19 @@ class RegisteredUserController extends Controller
         ]);
 
         $user = new User();
-        $user->user_ID = $this->generateCustomID($validate['']);
+        $user_Access = $request->input('user_Access', 'Principal Investigator');
+        if (empty($user_Access)) {
+            $user_Access = 'Principal Investigator';
+        }
+        $user->user_Access = $user_Access;
         $user->user_Lname = $validate['user_Lname'];
         $user->user_Fname = $validate['user_Fname'];
         $user->user_MI = $validate['user_MI'] ?? null; // optional: fallback if null
         $user->user_Password = Hash::make($validate['user_Password']);
-        //$user->pi_Email = $validate['pi_Email'];
+        $user->user_Email = $validate['user_Email'];
         //$user->Co_Investigators = $validate['Co_Investigators'];
         //$user->pi_program = $validate['pi_program'];
         //$user->pi_title = $validate['pi_title'];
-        $user->user_Access = $request->input('user_Access', 'Principal Investigator');
         $user->save();
         /*
         // Create user folder
