@@ -11,15 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_admin', function (Blueprint $table) {
-            $table->string('adminID')->primary();
-            $table->string('adminFname');
-            $table->string('adminMI')->nullable();
-            $table->string('adminLname');
-            $table->string('adminEmail');
-            $table->string('adminPassword');
-            $table->string('adminAccess', );
+        Schema::create('tbl_research_information', function (Blueprint $table) {
+            $table->string('research_info_ID')->primary();
+            $table->string('user_ID');
+            $table->string('research_title');
+            $table->string('research_college');
+            $table->string('research_department');
+            $table->string('research_Endorsement');
             $table->timestamps();
+
+            $table->foreign('user_ID')
+                  ->references('user_ID')
+                  ->on('tbl_users')
+                  ->onDelete('cascade'); 
         });
     }
 
@@ -28,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_admin');
+        Schema::dropIfExists('tbl_research_information');
     }
 };

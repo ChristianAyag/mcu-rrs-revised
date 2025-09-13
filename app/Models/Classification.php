@@ -30,7 +30,7 @@ class Classification extends Model
      */
     public function user()
     {
-        // Assuming tbl_pi_info has pi_ID as primary key
+        // Assuming tbl_users has user_ID as primary key
         return $this->belongsTo(User::class, 'user_ID', 'user_ID');
     }
 }

@@ -13,7 +13,7 @@ class ClassificationController extends Controller
     // Display all classifications
     public function index() {
         // Keep variable as $pi, but fetch classifications with user info
-        $pi = User::All();
+        $pi = User::where('user_Access', 'Principal Investigator')->get();
         return view('superadmin.accounts-classifications', compact('pi'));
     }
 
