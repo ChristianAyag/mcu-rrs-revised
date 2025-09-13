@@ -58,7 +58,10 @@ class User extends Authenticatable
     {
         return 'user_ID';
     }
-    
+    public function researchInformation()
+    {
+        return $this->hasOne(ResearchInformation::class, 'user_ID', 'user_ID');
+    }
     /**
      * Get the attributes that should be cast.
      *
