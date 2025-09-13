@@ -7,6 +7,7 @@ use App\Models\ResearchInformation;
 use App\Models\User;
 class ResearchController extends Controller
 {
+    //Registration ng research information
     public function store(Request $request)
     {
         $userId = session('pending_user_id'); // from registration step
@@ -15,7 +16,6 @@ class ResearchController extends Controller
             return redirect()->route('register')->with('error', 'Session expired. Please register again.');
         }
 
-        // 🚫 Prevent duplicate submission
         if (ResearchInformation::where('user_ID', $userId)->exists()) {
             return redirect()->route('login')
                 ->with('error', 'You have already submitted your research info. Please login.');
@@ -29,7 +29,7 @@ class ResearchController extends Controller
         ]);
 
         $research = new ResearchInformation();
-        $research->research_info_ID = uniqid('r_');
+        $research->research_info_ID = uniqid('rId_');
         $research->user_ID = $userId;
         $research->research_title = $request->research_title;
         $research->research_college = $request->research_college;

@@ -69,48 +69,14 @@ class RegisteredUserController extends Controller
         $user->user_MI = $validate['user_MI'] ?? null; // optional: fallback if null
         $user->user_Password = Hash::make($validate['user_Password']);
         $user->user_Email = $validate['user_Email'];
-        //$user->Co_Investigators = $validate['Co_Investigators'];
-        //$user->pi_program = $validate['pi_program'];
-        //$user->pi_title = $validate['pi_title'];
         $user->save();
-        /*
-        // Create user folder
-        $folderPath = 'piFolder/' . $user->pi_ID;
-        Storage::makeDirectory($folderPath);
-
-        if ($request->hasFile('pi_LetterOfIntent')) {
-            $file = $request->file('pi_LetterOfIntent');
-            $filename = $user->pi_ID . '_' . time() . '.' . $file->getClientOriginalExtension(); // optional: unique filename
-            $path = $file->storeAs($folderPath, $filename, 'public');
-
-            // Save only the file path in DB
-            $user->pi_LetterOfIntent = $path;
-            $user->save();
-        }
-        */
-
-        //$plainPassword = $validate['pi_Password']; // store plain password before hashing
-        //Mail::to($user->pi_Email)->send(new UserCredentialMail($user, $plainPassword));
-        /*
-        $request->validate([
-            'userLname' => ['required', 'string', 'max:255'],
-            'pi_fname' => ['required', 'string', 'max:255'],
-            'userMI' => ['nullable|string|max:4'],
-            //'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            //'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            //'email' => $request->email,
-            //'password' => Hash::make($request->password),
-        ]); */
 
         event(new Registered($user));
 
         //Auth::login($user);
 
-        return redirect(route('login', absolute: false));
+        //Temporary route, depende sa file name ni ben
+        return redirect()->route('auth.research.create', ['user_id' => $user->user_ID]);
     }
     public function addUser(Request $request)
     {

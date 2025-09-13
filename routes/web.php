@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\PdfExportController;
 use App\Http\Controllers\ClassificationController;
 use App\Http\Controllers\Form2AController;
+Use App\Http\Controllers\ResearchController;
 use Laravel\Tinker\ClassAliasAutoloader;
 //use App\Http\Controllers\Form2BController;
 //use App\Http\Controllers\Form2CController;
@@ -247,6 +248,11 @@ Route::get('/export-form2a', [PdfExportController::class, 'exportForm2A'])->name
 Route::get('/export-form2b', [PdfExportController::class, 'exportForm2B'])->name('export.form2b');
 Route::get('/export-form2c', [PdfExportController::class, 'exportForm2C'])->name('export.form2c');
 
+//add new research information (Temporary Route)
+Route::get('/research/create/{user_id}', [ResearchController::class, 'create'])
+    ->name('research.create');
+Route::post('/research/store', [ResearchController::class, 'store'])
+    ->name('research.store');
 //Storing Data for Form2B
 //Route::get('/student/download-forms', [Form2BController::class, 'index'])->name('download-forms');
 //Route::post('/student/store', [Form2BController::class, 'store'])->name('form2b.store');
