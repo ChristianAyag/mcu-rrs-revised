@@ -53,9 +53,12 @@
                     <div class="text-[14px] whitespace-nowrap" name="">Student</div>
                 </div>
             </div>
-            <a href="{{ url('/') }}" class="duration-200 hover:text-secondary">
-                <i class="bi bi-box-arrow-left text-2xl absolute right-0 top-[45%] -translate-y-1/2"></i>
-            </a>
+            <form method="POST" action="{{ route('logout') }}" class="inline">
+                    @csrf
+                    <button type="submit" class="duration-200 hover:text-secondary p-0 m-0 bg-transparent border-0">
+                        <i class="bi bi-box-arrow-left text-2xl absolute right-0 top-[45%] -translate-y-1/2"></i>
+                    </button>
+            </form>
         </li>
     </ul>
 </nav>
@@ -114,9 +117,12 @@
                         <div class="text-[14px] whitespace-nowrap" name="">Student</div>
                     </div>
                 </div>
-                <a href="{{ url('/') }}" class="duration-200 hover:text-secondary">
-                    <i class="bi bi-box-arrow-left text-2xl absolute right-0 top-[45%] -translate-y-1/2"></i>
-                </a>
+                <form method="POST" action="{{ route('logout') }}" class="inline">
+                    @csrf
+                    <button type="submit" class="duration-200 hover:text-secondary p-0 m-0 bg-transparent border-0">
+                        <i class="bi bi-box-arrow-left text-2xl absolute right-0 top-[45%] -translate-y-1/2"></i>
+                    </button>
+                </form>
             </li>
         </ul>
     </nav>

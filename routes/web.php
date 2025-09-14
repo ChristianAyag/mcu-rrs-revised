@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ProfileController;
+use Doctrine\DBAL\Logging\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -214,10 +215,6 @@ Route::post('/superadmin/store', [RegisteredUserController::class, 'addUser'])->
 Route::get('/superadmin/accounts-classifications',[ClassificationController::class,'index'])->name('accounts-classifications');
 Route::post('/classifications/{id}/update', [ClassificationController::class, 'update']);
 
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
-Route::post('/login', [AuthenticatedSessionController::class, 'store']);
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-
 //Verification for login
 Route::get('/superadmin/dashboard', function () {
     return view('superadmin.dashboard');
@@ -237,7 +234,7 @@ Route::get('/reviewer/dashboard', function () {
 
 Route::get('/student/dashboard', function () {
     return view('student.dashboard');
-})->name('student.dashboard');
+})->middleware(['auth','access:Principal Investigator'])->name('student.dashboard');
 
 //Storing Data for Form2A
 Route::get('/student/download-forms', [Form2AController::class, 'index'])->name('download-forms');
